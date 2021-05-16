@@ -1,0 +1,53 @@
+.body{
+    background-color:black;
+    
+}
+.centrado{
+    text-align:center;
+    
+}
+.nombres2{
+    color:blue;
+    text-decoration:none;
+}
+.nombres2:hover{
+    color:white;
+    
+}
+.img{
+    display:block;
+    margin:auto;
+  
+}
+
+.img2{
+    display:block;
+    margin:auto;
+    height: 100vh;
+    padding: 100px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+}
+
+
+.nombres{
+    color:blue;
+    text-decoration:none;
+}
+.nombres:hover{
+    color:black;
+    
+}
+.botones{
+    text-align: center;
+    margin: 10px;
+    width:70px;
+    height:25px;
+   
+}
+
+
+
+

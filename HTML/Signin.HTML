@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="../CSS/css.css">
+    <title>Inicio de sesion</title>
+  </head>
+  <body class="body" >
+    <div class="container" style="background-color: white;width: 30%; height:60%;">
+      <div id="container" >
+        <form id="miFormulario">
+          <img class="img" src="../Imagenes/user-login.png" width="100" height="100" alt="Imagen de usuario " >
+          <div class="container">
+            <div class="row">
+              <form action="procesar.php" method="post" id="Formulario">
+                <div class="form-group">
+                  <label for="nombre">Nombre de usuario</label> 
+                  <input type="text" class="form-control" id="usuario" name="nombre" placeholder="Ingresar usuario" required >
+                  <div id="mensaje1" class="alert alert-danger" role="alert">Ingresar nombre de usuario</div>
+                </div>
+                <div class="form-group">
+                  <label for="nombre">Clave</label> 
+                  <input type="password" class="form-control" id="clave" name="clave" placeholder="Ingresar clave" required>
+                  <div id="mensaje2" class="alert alert-danger" role="alert">Ingresar clave</div>
+                </div>
+                <div class="centrado"> <input type="submit" class="btn btn-success"style="margin: 10px;width: 60%; ;height: 60%;"  id="login" value="Login"  >  </div>
+                <div class="centrado"> <input type="reset"class="btn btn-danger" style="margin: 10px;width: 60%; ;height: 60%;" id="limpiar" value="Limpiar"  > </div>
+                <h6 class="centrado" > <a class="nombres"  href="Signup.html"> ¿Aun no tienes cuenta </a> </h6>
+              </form>
+            </div>
+          </div>
+        </form> 
+      </div>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/Javascript">
+      $(document).ready(function(){
+        $('#mensaje1').hide();
+        $('#mensaje2').hide();
+        $('#limpiar').click(function(){
+            $('#mensaje1').hide();
+            $('#mensaje2').hide();
+        });
+        $('#login').click(function(){
+          event.preventDefault();
+          
+          var usuario = $('#usuario').val().trim();
+          var clave   = $('#clave').val().trim();
+          if(usuario.length === 0){
+            $('#mensaje1').show();
+          }
+          if(usuario.length >= 4){
+            $('#mensaje1').show();
+          }
+          if(!(usuario.length<=16 && usuario.length >=4 )) {
+            $('#mensaje1').show();
+            
+          }else{
+            $('#mensaje1').hide();
+          }
+          if(clave.length === 0){
+            $('#mensaje2').show();
+          }
+          if(usuario.length >= 8){
+            $('#mensaje2').show();
+          }
+          if(!(clave.length >=8 && clave.length <=16)) {
+            $('#mensaje2').show();
+            
+          }
+          else{
+            $('#mensaje2').hide();
+          }
+          var form = new FormData();
+          form.append("username", usuario);
+          form.append("password", clave);
+
+          var settings = {
+            "url": "http://nriverv.pythonanywhere.com/api/v1/signin/",
+            "method": "POST",
+
+            "headers": {
+            },
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form
+          };
+
+          $.ajax(settings).done(function (response) {
+            console.log(response);
+            window.location ='Felicidades.html';
+          });
+        });
+      });
+
+  </script>
+  </body>
+</html>
