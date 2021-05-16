@@ -18,23 +18,25 @@
               <form action="procesar.php" method="post" id="Formulario">
                   <div class="form-group">
                       <label for="nombre">Usuario</label> 
-                      <input type="text" class="form-control" id="nombre" name="nombre">
+                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresar usuario" required >
                   </div>
                   <div class="form-group">
                     <label for="email">Correo</label> 
-                      <input type="email" class="form-control" id="email" name="email">
+                      <input type="email" class="form-control" id="email" name="email" placeholder="Ingresar correo electronico" required >
                   </div>
                   <div class="form-group">
                     <label for="clave">Clave</label> 
-                      <input type="int" class="form-control" id="clave" name="clave">
+                      <input type="int" class="form-control" id="clave" name="clave" placeholder="Ingresar clave" required >
                   </div>
                   <div class="form-group">
                     <label for="clave">Clave</label> 
-                      <input type="int" class="form-control" id="clave" name="clave">
+                      <input type="int" class="form-control" id="clave2" name="clave" placeholder="Repetir clave" required >
                   </div>
-                  <div class="centrado"> <input type="submit" class="btn btn-danger"style="margin: 10px;width: 300px; ;height: 40px;"  id="validar" value="Validar">  </div>
-                  <div></div>
-                  <div class="centrado"> <input type="reset"class="btn btn-primary" style="margin: 10px;width: 300px; ;height: 40px;" id="limpiar" value="Limpiar"> </div>
+                  
+                  <div class="centrado"> <input type="button" class="btn btn-primary "style="margin: 10px;width: 300px; ;height: 40px;"  id="validar" value="Validar">  </div>
+    
+                  <div class="centrado"> <input type="reset"class="btn btn-danger" style="margin: 10px;width: 300px; ;height: 40px;" id="limpiar" value="Limpiar"> </div>
+                
                   <h6 class="centrado"  > <a class="nombres"  href="Signup.HTML">Volver</a> </h6>
               </form>
           </div>
@@ -58,7 +60,46 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script type="text/javascript">
       $(document).ready(function() {
+        console.log("jquery")
+        
+        $("#validar").click(function(){
+          console.log("dar click")
+          var nombre = $("#nombre").val().trim();
+          console.log("Nombre variable",nombre );
+          if(!(nombre<=16 && nombre >=4 )){
+            console.log("Datos invalidos")
 
+
+          }
+          var email = $("#email").val().trim();
+          console.log("Variable email",email);
+          if(!(email )){
+
+            
+          }
+        
+        
+
+          var form = new FormData();
+          form.append("username", nombre);
+          form.append("email", email);
+          form.append("password1", clave);
+          form.append("password2", clave2);
+          
+          var settings = {
+            "url": "http://nriverv.pythonanywhere.com/api/v1/validation/all/",
+            "method": "POST",
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form
+          };
+          $.ajax(settings).done(function (response) {
+            console.log(response);
+
+          });
+
+        })
       })
   </script>
   
